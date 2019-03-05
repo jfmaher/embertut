@@ -6,6 +6,14 @@
     About Us
   {{/link-to}}
 </div>
-{{#each this.model as |rental|}}
-  <RentalListing @rental={{rental}}/>
-{{/each}}
+<ListFilter
+ @filter={{action "filterByCity"}}
+as |filteredResults|
+>
+  <ul class="results">
+    {{#each filteredResults as |rentalUnit|}}
+      <li><RentalListing @rental={{rentalUnit}} /></li>
+    {{/each}}
+  </ul>
+</ListFilter>
+{{outlet}}
