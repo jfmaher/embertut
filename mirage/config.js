@@ -38,7 +38,7 @@ export default function() {
       description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
     }
   }]
-  
+
   this.get('/rentals', function(db, request) {
     if(request.queryParams.city !== undefined) {
       let filteredRentals = rentals.filter(function(i) {
@@ -48,5 +48,9 @@ export default function() {
     } else {
       return { data: rentals };
     }
+  });
+
+  this.get('/rentals/:id', (db, request) => {
+    return { data: rentals.find((rental) => {return rental.id === request.params.id})};
   });
 }
